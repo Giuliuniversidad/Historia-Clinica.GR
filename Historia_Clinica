@@ -1,0 +1,60 @@
+@startuml
+!theme cerulean-outline
+
+class Hospital{
+  - nombre: String
+  - pacientes: List<Paciente>
+  + buscarDatosPacientes(CI: String): void
+  + getPacientesMayorEstatura(): List<Paciente>
+  + getCantidadPacientesFemeninosConDengue(): int
+  + getPacientesOrdenadosPorNombre(): List<Paciente>
+  + getPacientesOrdenadosPorPeso(): List<Paciente>
+  + agregarPaciente(paciente: Paciente): void
+  + eliminarPaciente(CI: String): void
+  + modificarPaciente(CI: String, paciente: Paciente): void
+}
+
+class Paciente {
+  - CI: String
+  - nombre: String
+  - apellidos: String
+  - fechaNacimiento: Date
+  - sexo: String
+  - peso: double
+  - estatura: double
+  - direccion: String
+  - retratos: List<Retrato>
+  - dolencias: List<Dolencia>
+  + getCI(): String
+  + getNombre(): String
+  + getApellidos(): String
+  + getFechaNacimiento(): Date
+  + getSexo(): String
+  + getPeso(): double
+  + getEstatura(): double
+  + getDireccion(): String
+  + setCI(CI: String): void
+}
+class Retrato {
+  - nombreArchivo: String
+  - fechaTomada: Date
+  - tipo: String
+  - comentariosDoctor: String
+  + getNombreArchivo(): String
+  + getFechaTomada(): Date
+  + getTipo(): String
+  + getComentariosDoctor(): String
+}
+
+class Dolencia {
+  - nombre: String
+  - fecha: Date
+  - tratamiento: String
+  + getNombre(): String
+  + getFecha(): Date
+  + getTratamiento(): String
+}
+Hospital "1" -- "0..*" Paciente
+Paciente "1" -- "0..*" Retrato
+Paciente "1" -- "0..*" Dolencia
+@enduml
